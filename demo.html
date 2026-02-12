@@ -2,70 +2,161 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Smart Collar Demo</title>
+<title>Live Search Command System - Demo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
     background: #0f0f0f;
     color: #eee;
-    margin: 0;
-    padding: 40px;
 }
-h1, h2 {
+header {
+    background: #000;
+    padding: 30px;
+    text-align: center;
+}
+h1 {
     color: #00ffcc;
 }
+section {
+    padding: 60px 10%;
+}
 .card {
-    background: #1e1e1e;
+    background: #1c1c1c;
     padding: 25px;
     border-radius: 10px;
     margin-bottom: 30px;
 }
-a {
+h2 {
     color: #00ffcc;
 }
-button {
-    background: #00ffcc;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 6px;
+ul {
+    line-height: 1.8;
+}
+.highlight {
+    color: #00ffcc;
+    font-weight: bold;
+}
+iframe {
+    width: 100%;
+    height: 400px;
+    border-radius: 10px;
+}
+.code-block {
+    background: #000;
+    padding: 15px;
+    font-family: monospace;
+    overflow-x: auto;
+    border-radius: 8px;
+}
+a {
+    color: #00ffcc;
 }
 </style>
 </head>
 <body>
 
-<h1>Smart Collar Demo</h1>
+<header>
+<h1>Live Search Command System</h1>
+<p>Operational MVP v0.3 — Real-Time GPS + Camera + FSM</p>
+</header>
 
-<div class="card">
+<section>
 <h2>🎥 Demo Video</h2>
-<p>Upload your demo video to YouTube (Unlisted) and paste link below:</p>
-<p><a href="#" target="_blank">Demo Video Link</a></p>
-</div>
-
 <div class="card">
-<h2>📄 Description</h2>
+<!-- Вставь YouTube ссылку -->
+<iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+        allowfullscreen></iframe>
 <p>
-This Smart Collar prototype demonstrates:
+This video demonstrates live GPS tracking, movement detection,
+state machine transitions, and real-time ESP32-CAM streaming.
 </p>
+</div>
+</section>
+
+<section>
+<h2>🛰 Live API Example</h2>
+<div class="card">
+<p>ESP32 JSON endpoint:</p>
+<div class="code-block">
+GET /status
+
+{
+  "state": 0,
+  "speed": 3.42,
+  "lat": 41.312345,
+  "lon": 69.278912,
+  "fix": 1
+}
+</div>
+<p>
+State meanings:
 <ul>
-<li>Real-time GPS tracking</li>
-<li>Sensor-based movement monitoring</li>
-<li>Web-based dashboard interface</li>
-<li>Future AI anomaly detection integration</li>
+<li>0 → SEARCH</li>
+<li>1 → POSSIBLE FIND</li>
+<li>2 → CONFIRMED FIND</li>
+</ul>
+</p>
+</div>
+</section>
+
+<section>
+<h2>📡 System Architecture</h2>
+<div class="card">
+<ul>
+<li><span class="highlight">ESP32-CAM</span> — video stream</li>
+<li><span class="highlight">GPS Module</span> — real-time positioning</li>
+<li><span class="highlight">Finite State Machine</span> — stop detection logic</li>
+<li><span class="highlight">HTTP Server</span> — JSON API + MJPEG stream</li>
+<li><span class="highlight">Web Dashboard</span> — OpenStreetMap + polyline</li>
 </ul>
 </div>
+</section>
 
+<section>
+<h2>🧠 Search Logic (FSM)</h2>
 <div class="card">
-<h2>🔗 Working Prototype</h2>
+<p>System automatically detects stop behavior:</p>
+<ul>
+<li>If speed &lt; 0.5 km/h for 5 sec → POSSIBLE FIND</li>
+<li>If speed &lt; 0.5 km/h for 10 sec → CONFIRMED FIND</li>
+<li>If movement resumes → SEARCH</li>
+</ul>
+<p>This enables automated search-event detection.</p>
+</div>
+</section>
+
+<section>
+<h2>📊 Current MVP Status</h2>
+<div class="card">
+✔ Map with real-time marker  
+<br>✔ Polyline route tracking  
+<br>✔ Live camera streaming  
+<br>✔ JSON telemetry API  
+<br>✔ Stop-detection FSM  
+<br><br>
+🔄 GPS filtering (planned)  
+<br>🔄 Event analytics  
+<br>🔄 Edge AI classification  
+</div>
+</section>
+
+<section>
+<h2>🚀 Future Vision</h2>
+<div class="card">
 <p>
-If live prototype is available, paste link here.
+Transforming search dogs into connected intelligent field units
+with real-time situational awareness and AI-assisted confirmation.
 </p>
 </div>
+</section>
 
-<a href="index.html">
-<button>⬅ Back to Home</button>
-</a>
+<section>
+<div class="card">
+<a href="index.html">⬅ Back to Main Page</a>
+</div>
+</section>
 
 </body>
 </html>
